@@ -2,8 +2,8 @@
 
 ## Knowledge-base page
 
-- [Signed page source (.svx)](support-kb/src/routes/kb/incidents/4471-findings/+page.svx)
-- [Rendered page (.html)](support-kb/rendered/4471-findings.html)
+- [Signed page source (.svx)](4471-findings.svx)
+- [Rendered page (.html)](4471-findings.html)
 - [Knowledge-base export and conventions](support-kb/README.md)
 
 ## Tickets
@@ -24,3 +24,6 @@ npm run render
 
 The renderer compiles the signed `.svx` page and its Svelte components. Counts,
 tenant classification, and the desk reference come from the exported logic.
+
+The root source/render pair is generated from the canonical KB route under
+`support-kb/src/routes/kb/incidents/4471-findings/`.

@@ -37,4 +37,7 @@ for (const expected of ['379', '33', '412', 'DR-P30G-506C', 'issues/1', 'issues/
   if (!rendered.includes(expected)) throw new Error(`Missing rendered evidence: ${expected}`);
 }
 if (rendered.includes("this page isn't signed")) throw new Error('Missing signature');
+// Publish a directly discoverable source/render pair alongside the repository index.
+await writeFile(path.join(root, '../4471-findings.svx'), await readFile(path.join(root, 'src/routes/kb/incidents/4471-findings/+page.svx')));
+await writeFile(path.join(root, '../4471-findings.html'), rendered);
 console.log('Rendered and verified:', target);
