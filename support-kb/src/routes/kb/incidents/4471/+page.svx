@@ -1,36 +1,58 @@
 ---
 layout: runbook
-title: '#4471 · dates parse mm/dd in eu locales'
+title: '#4471 · date-handling findings'
 owner: support desk
-status: known
-reviewed: 2026-09-30
+status: living
+reviewed: 2026-10-28
+signature: mateuszrogos
 ---
 
-<script>
+<script lang="ts">
   import CauseTable from '#lib/kb/CauseTable.svelte';
-  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
-  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
-Since April, people have told us their bookings land on the wrong day: a month flipped. By
-4 October the desk had **412 reports**.
+Ticket #4471 contains **412 unique reports**, but the export includes **427
+rows** because 15 report IDs repeat in overlapping pages. All 412 unique
+reports were merged into #4471. The evidence separates them into two causes,
+not one.
 
-**Merged as one issue.** The parser reads dates month first, and our tenants write the day
-first. The fix is queued.
+## Shared parser — 379 reports
 
-<Callout>
-Known. One issue, one fix queued.
-</Callout>
+The shared parser reads dates month-first. For tenants whose locale writes the
+day before the month, that reverses day and month. This group spans 11 tenants
+and app, email, and form reports.
 
-## What was merged
+Track the shared-parser follow-up in [GitHub issue #1](https://github.com/mateuszrogos/mega-dev/issues/1).
+
+**Outcome:** Fixed in `fix(dates): parse dd/mm for eu locales`.
+
+## Booking-v3 date hint — 33 reports
+
+Booking-v3 displays `MM/DD/YYYY` for day-first tenants, while the form
+interprets values using the tenant's locale. This group contains 33 form
+reports across Alder Physio (12), Copper Studio (11), and Pale Harbour (10).
+It is distinct from the shared-parser group.
+
+Track the booking-v3 follow-up in [GitHub issue #2](https://github.com/mateuszrogos/mega-dev/issues/2).
+
+**Outcome:** Not fixed; the booking-v3 form was retired.
+
+## Engineering update
+
+The support desk closed #4471 on **5 October 2026**. The shared parser was
+fixed, while the booking-v3 hint will not be fixed because its form was retired.
+
+## Counts and classification
+
+The table's last column shows how the support desk grouped reports under
+ticket #4471; the GitHub follow-up issues are linked above.
 
 <CauseTable ticket={4471} />
 
-## Since April
+Intake tags do not identify the root cause reliably: 23 parser-group reports
+are tagged `hint`, and 15 hint-group reports are tagged `parser`. The five
+one-day-move IDs in the desk notes remain within the parser group's 379 under
+the supplied tenant-based classifier; they are not counted as a third cause.
 
-<QueueTimeline ticket={4471} />
-
-## Lessons
-
-- A big ticket is mostly one bug reported many times. Merge early, count once.
-- Write the page while the queue is still in your head.
+<RenderStamp {signature} />
