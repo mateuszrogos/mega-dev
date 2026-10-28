@@ -2,6 +2,17 @@
 
 ## Knowledge-base page
 
+The primary KB contribution is a signed replacement decision:
+
+- [Decision 0002: source (.svx)](support-kb/src/routes/kb/decisions/0002-dedupe-by-cause/+page.svx)
+- [Decision 0002: rendered page (.html)](support-kb/rendered/0002-dedupe-by-cause.html)
+
+It supersedes the subject-only deduplication rule in decision 0001, without
+editing that accepted historical record. The tables and chart run the
+exported components and data.
+
+Additional incident findings and student screenshots:
+
 - [Signed page source (.svx)](4471-findings.svx)
 - [Rendered page (.html)](4471-findings.html)
 - [Page screenshot: top](4471-findings-top.png)

@@ -1,0 +1,90 @@
+---
+layout: runbook
+title: '0002 · Deduplicate reports by cause, not subject'
+owner: mateuszrogos
+status: accepted
+reviewed: 2026-10-28
+signature: mateuszrogos
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+**Date:** 28 October 2026 · **Author:** mateuszrogos
+
+**Supersedes:** [decision 0001: duplicates share a subject line](/kb/decisions/0001-dedupe-by-subject).
+The accepted record remains unchanged as a record of the old rule.
+
+## Context
+
+Ticket #4471 was marked known and described as one parser problem. Its live
+cause table separates the reports into two problems. Subject text and intake
+tags are not reliable evidence that two reports have the same cause.
+
+The table below deduplicates overlapping export rows by report ID before
+counting. It classifies reports from the tenant's locale, booking-form version,
+and report channel, rather than copying the intake tag.
+
+<CauseTable ticket={4471} />
+
+This table describes the original support-desk export. Its “no ticket of its
+own” label means no separate ticket in that export; the GitHub follow-ups
+below now track both causes.
+
+The desk notes identify reports read as one-day moves. They remain in the
+parser group under the supplied classifier; do not double-count them or
+assert another cause without further evidence.
+
+## Decision
+
+Replace subject-only merging with cause-based triage:
+
+1. Read the report body. Look up the tenant's locale and booking-form version,
+   and identify the report channel.
+2. For day-first tenants, distinguish the shared month-first parser from the
+   booking-v3 form's month-first hint. The form interprets dates according to
+   the tenant's locale, despite its conflicting hint.
+3. Merge reports only when their cause is established as the same. Different
+   subjects may describe the same cause; identical subjects may describe
+   different causes.
+4. If the tenant or cause is unknown, keep the report separate and investigate.
+   Two unclassified reports are not established duplicates.
+5. Keep one engineering ticket per problem, with counts of unique report IDs.
+   Recheck the ticket's outcome before presenting it as open or fixed.
+
+The cases below are computed by the exported cause logic. They demonstrate
+both false merges and missed duplicates under the old subject rule.
+
+<DedupeExplorer />
+
+## Tickets and engineering outcomes
+
+- [Shared-parser follow-up, GitHub issue #1](https://github.com/mateuszrogos/mega-dev/issues/1):
+  closed as completed. Fixed in `fix(dates): parse dd/mm for eu locales`.
+- [Booking-v3 hint follow-up, GitHub issue #2](https://github.com/mateuszrogos/mega-dev/issues/2):
+  closed as not planned. The booking-v3 form was retired; its hint was not fixed.
+
+The support desk closed #4471 on **5 October 2026**. Closing both follow-ups
+does not mean both problems were fixed.
+
+## What the queue shows
+
+<QueueTimeline ticket={4471} />
+
+Received and merged are different events. A batch of merges does not establish
+a new outbreak or a shared cause. Use the report evidence, not the size or
+timing of the merged ticket, to decide whether reports belong together.
+
+## Consequences
+
+Triage requires reading and tenant context, rather than a subject-line match.
+The desk gets separate engineering outcomes and counts for separate causes.
+Unknown cases stay visible instead of being silently merged into a known bug.
+Treat old reviewed dates and accepted records as historical claims, not proof
+that the current live evidence still supports them.
+
+<RenderStamp {signature} />
