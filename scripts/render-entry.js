@@ -1,5 +1,4 @@
 import { render } from 'svelte/server';
-import Page from '../src/routes/kb/incidents/4471-findings/+page.svx';
 import Decision from '../src/routes/kb/decisions/0002-dedupe-by-cause/+page.svx';
 
 function document(Component) {
@@ -10,5 +9,4 @@ function document(Component) {
 ${head}</head><body>${body}</body></html>
 `;
 }
-export const html = document(Page);
-export const decisionHtml = document(Decision);
+export const html = document(Decision);

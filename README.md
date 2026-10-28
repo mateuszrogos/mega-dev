@@ -1,49 +1,24 @@
 # S01E03 — what it shows
 
-## Knowledge-base page
+## Canonical signed KB page
 
-Public artifact URLs:
-
-- [Signed incident page (.svx)](https://github.com/mateuszrogos/mega-dev/blob/main/src/routes/kb/incidents/4471-findings/%2Bpage.svx)
-- [Rendered incident page (.html)](https://github.com/mateuszrogos/mega-dev/blob/main/rendered/4471-findings.html)
-- [Signed replacement decision (.svx)](https://github.com/mateuszrogos/mega-dev/blob/main/src/routes/kb/decisions/0002-dedupe-by-cause/%2Bpage.svx)
-- [Rendered replacement decision (.html)](https://github.com/mateuszrogos/mega-dev/blob/main/rendered/0002-dedupe-by-cause.html)
-
-The original `apps/kb/` project layout is also published under [apps/kb](apps/kb/README.md), including source and the built `/kb/` routes. It is a generated copy of the root project for the original export location.
-
-Direct delivery pair: [source](kb/4471.svx) and [rendered page](kb/4471.html).
-
-The primary KB contribution is a signed replacement decision:
-
-- [Decision 0002: source (.svx)](src/routes/kb/decisions/0002-dedupe-by-cause/+page.svx)
-- [Decision 0002: rendered page (.html)](rendered/0002-dedupe-by-cause.html)
-- [Decision 0002: full static-site route](build/kb/decisions/0002-dedupe-by-cause/index.html)
+- [Source: decision 0002 (.svx)](https://github.com/mateuszrogos/mega-dev/blob/main/src/routes/kb/decisions/0002-dedupe-by-cause/%2Bpage.svx)
+- [Standalone rendered page (.html)](https://github.com/mateuszrogos/mega-dev/blob/main/rendered/0002-dedupe-by-cause.html)
+- [Full static-site page](build/kb/decisions/0002-dedupe-by-cause/index.html)
 - [Built KB index](build/kb/index.html)
 
-It supersedes the subject-only deduplication rule in decision 0001, without
-editing that accepted historical record. The tables and chart run the
-exported components and data.
-
-Additional incident findings and student screenshots:
-
-- [Signed page source (.svx)](4471-findings.svx)
-- [Rendered page (.html)](4471-findings.html)
-- [Page screenshot: top](4471-findings-top.png)
-- [Page screenshot: bottom, including desk reference](4471-findings-bottom.png)
-- [Knowledge-base export and conventions](EXPORT-README.md)
-
-The screenshots were supplied by the student from the rendered page in the
-browser. Together they show the page, with an overlap at “Engineering update.”
+There is one signed source page. It explains the two causes in #4471,
+links their GitHub follow-ups and final engineering outcomes, and supersedes
+subject-only deduplication without editing accepted decision 0001.
+Counts, examples, timeline and desk reference are computed by the exported
+components. The original 30 export files remain unchanged in content.
 
 ## Tickets
 
-- [Shared parser: 379 reports — fixed](https://github.com/mateuszrogos/mega-dev/issues/1)
-- [Booking-v3 hint: 33 reports — not planned; form retired](https://github.com/mateuszrogos/mega-dev/issues/2)
+- [Shared parser — fixed](https://github.com/mateuszrogos/mega-dev/issues/1)
+- [Booking-v3 hint — not planned; form retired](https://github.com/mateuszrogos/mega-dev/issues/2)
 
-The support desk closed #4471 on 5 October 2026. The two tickets cover all
-412 unique reports (427 export rows, with 15 repeated report IDs).
-
-## Reproduce the rendered page
+## Build
 
 ```sh
 npm ci
@@ -51,12 +26,16 @@ npm run render
 npm run build
 ```
 
-The renderer compiles the signed `.svx` page and its Svelte components. Counts,
-tenant classification, and the desk reference come from the exported logic.
+The standalone rendered page is self-contained HTML. The full static site
+under `build/` includes all KB routes and the client code for interactive
+components. Serve `build/` as the web root to use those routes and controls.
+`src/app.html` is a build template, not a rendered page.
 
-The root source/render pair is generated from the canonical KB route under
-`src/routes/kb/incidents/4471-findings/`.
+## Export and historical evidence
 
-`npm run build` produces the complete static KB under `build/`, including its
-`/kb/` index, route HTML, styles, and client code for interactive components.
-Serve `build/` as the web root to use those links and controls.
+- [Original export README and conventions](EXPORT-README.md)
+- [Student screenshot of earlier incident findings: top](4471-findings-top.png)
+- [Student screenshot of earlier incident findings: bottom](4471-findings-bottom.png)
+
+The screenshots document an earlier findings page, not the current signed
+decision. The current decision source and rendered outputs are linked above.
