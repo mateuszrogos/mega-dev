@@ -4,7 +4,7 @@ title: '0002 · Deduplicate reports by cause, not subject'
 owner: "Mateusz Rogoś"
 status: accepted
 reviewed: 2026-10-28
-signature: "Mateusz Rogoś"
+signature: "v1.eyJzdWIiOiIxNTYyIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMxOTI4MTksImV4cCI6MTc5MzI3OTIxOX0.WkK6Sa0jzllVj6xds_5Jv2TUuU_BW2DDfF76vRx3QYU"
 ---
 
 <script>

@@ -33,9 +33,12 @@ await mkdir(path.join(root, 'rendered'), { recursive: true });
 const target = path.join(root, 'rendered/0002-dedupe-by-cause.html');
 await writeFile(target, html);
 const rendered = await readFile(target, 'utf8');
-for (const expected of ['379', '33', '412', signature, expectedRef, 'issues/1', 'issues/2', 'Supersedes:', 'same cause']) {
+if (typeof signature !== 'string' || !signature.trim()) throw new Error('Missing frontmatter signature');
+// The course proof belongs in frontmatter; the desk sees only its derived reference.
+for (const expected of ['379', '33', '412', expectedRef, 'issues/1', 'issues/2', 'Supersedes:', 'same cause']) {
   if (!rendered.includes(expected)) throw new Error(`Missing rendered evidence: ${expected}`);
 }
+if (rendered.includes(signature)) throw new Error('The rendered page exposes the raw signature');
 if (rendered.includes("this page isn't signed")) throw new Error('Missing signature');
 await writeFile(path.join(root, 'index.html'), rendered);
 console.log('Rendered and verified:', target);
