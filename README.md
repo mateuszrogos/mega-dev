@@ -2,6 +2,8 @@
 
 ## Knowledge-base page
 
+The original `apps/kb/` project layout is also published under [apps/kb](apps/kb/README.md), including source and the built `/kb/` routes. It is a generated copy of the root project for the original export location.
+
 Direct delivery pair: [source](kb/4471.svx) and [rendered page](kb/4471.html).
 
 The primary KB contribution is a signed replacement decision:

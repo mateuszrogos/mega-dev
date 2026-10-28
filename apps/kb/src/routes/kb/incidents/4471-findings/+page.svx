@@ -1,0 +1,56 @@
+---
+layout: runbook
+title: '#4471 · two date-handling causes'
+owner: support desk
+status: living
+reviewed: 2026-10-28
+signature: "mateuszrogos"
+---
+
+<script lang="ts">
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+Ticket #4471 contains **412 unique reports**, but the export includes **427
+rows** because 15 report IDs repeat in overlapping pages. All 412 unique
+reports were merged into #4471. The evidence separates them into two causes,
+not one.
+
+## Shared parser — 379 reports
+
+The shared parser reads dates month-first. For tenants whose locale writes the
+day before the month, that reverses day and month. This group spans 11 tenants
+and app, email, and form reports.
+
+Track the shared-parser follow-up in [GitHub issue #1](https://github.com/mateuszrogos/mega-dev/issues/1).
+
+**Outcome:** Fixed in `fix(dates): parse dd/mm for eu locales`.
+
+## Booking-v3 date hint — 33 reports
+
+Booking-v3 displays `MM/DD/YYYY` for day-first tenants, while the form
+interprets values using the tenant's locale. This group contains 33 form
+reports across Alder Physio (12), Copper Studio (11), and Pale Harbour (10).
+It is distinct from the shared-parser group.
+
+Track the booking-v3 follow-up in [GitHub issue #2](https://github.com/mateuszrogos/mega-dev/issues/2).
+
+**Outcome:** Not fixed; the booking-v3 form was retired.
+
+## Engineering update
+
+The support desk closed #4471 on **5 October 2026**. The shared parser was
+fixed, while the booking-v3 hint will not be fixed because its form was retired.
+
+## Counts and classification
+
+<CauseTable ticket={4471} />
+
+Intake tags do not identify the root cause reliably: 23 parser-group reports
+are tagged `hint`, and 15 hint-group reports are tagged `parser`. The five
+one-day-move IDs in the desk notes remain within the parser group's 379 under
+the supplied tenant-based classifier; they are noted by the table and are not
+counted as a third cause.
+
+<RenderStamp {signature} />
