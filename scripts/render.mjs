@@ -45,4 +45,7 @@ await writeFile(path.join(root, 'rendered/0002-dedupe-by-cause.html'), decisionH
 // Publish a directly discoverable source/render pair alongside the repository index.
 await writeFile(path.join(root, '4471-findings.svx'), await readFile(path.join(root, 'src/routes/kb/incidents/4471-findings/+page.svx')));
 await writeFile(path.join(root, '4471-findings.html'), rendered);
+await mkdir(path.join(root, 'kb'), { recursive: true });
+await writeFile(path.join(root, 'kb/4471.svx'), await readFile(path.join(root, 'src/routes/kb/incidents/4471-findings/+page.svx')));
+await writeFile(path.join(root, 'kb/4471.html'), rendered);
 console.log('Rendered and verified:', target);

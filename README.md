@@ -2,6 +2,8 @@
 
 ## Knowledge-base page
 
+Direct delivery pair: [source](kb/4471.svx) and [rendered page](kb/4471.html).
+
 The primary KB contribution is a signed replacement decision:
 
 - [Decision 0002: source (.svx)](src/routes/kb/decisions/0002-dedupe-by-cause/+page.svx)
