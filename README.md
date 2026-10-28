@@ -4,7 +4,12 @@
 
 - [Signed page source (.svx)](4471-findings.svx)
 - [Rendered page (.html)](4471-findings.html)
+- [Page screenshot: top](4471-findings-top.png)
+- [Page screenshot: bottom, including desk reference](4471-findings-bottom.png)
 - [Knowledge-base export and conventions](support-kb/README.md)
+
+The screenshots were supplied by the student from the rendered page in the
+browser. Together they show the page, with an overlap at “Engineering update.”
 
 ## Tickets
 
