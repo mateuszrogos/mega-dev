@@ -28,12 +28,12 @@ await build({
   },
 });
 
-const { html } = await import(`${output}/page.mjs`);
+const { html, signature, expectedRef } = await import(`${output}/page.mjs`);
 await mkdir(path.join(root, 'rendered'), { recursive: true });
 const target = path.join(root, 'rendered/0002-dedupe-by-cause.html');
 await writeFile(target, html);
 const rendered = await readFile(target, 'utf8');
-for (const expected of ['379', '33', '412', 'DR-P30G-506C', 'issues/1', 'issues/2', 'Supersedes:', 'same cause']) {
+for (const expected of ['379', '33', '412', signature, expectedRef, 'issues/1', 'issues/2', 'Supersedes:', 'same cause']) {
   if (!rendered.includes(expected)) throw new Error(`Missing rendered evidence: ${expected}`);
 }
 if (rendered.includes("this page isn't signed")) throw new Error('Missing signature');

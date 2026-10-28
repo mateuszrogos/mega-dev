@@ -1,10 +1,10 @@
 ---
 layout: runbook
 title: '0002 · Deduplicate reports by cause, not subject'
-owner: mateuszrogos
+owner: "Mateusz Rogoś"
 status: accepted
 reviewed: 2026-10-28
-signature: "mateuszrogos"
+signature: "Mateusz Rogoś"
 ---
 
 <script>
@@ -14,7 +14,7 @@ signature: "mateuszrogos"
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
-**Date:** 28 October 2026 · **Author:** mateuszrogos
+**Date:** 28 October 2026 · **Author:** Mateusz Rogoś (`mateuszrogos`)
 
 **Supersedes:** [decision 0001: duplicates share a subject line](/kb/decisions/0001-dedupe-by-subject).
 The accepted record remains unchanged as a record of the old rule.
