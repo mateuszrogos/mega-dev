@@ -37,4 +37,5 @@ for (const expected of ['379', '33', '412', signature, expectedRef, 'issues/1', 
   if (!rendered.includes(expected)) throw new Error(`Missing rendered evidence: ${expected}`);
 }
 if (rendered.includes("this page isn't signed")) throw new Error('Missing signature');
+await writeFile(path.join(root, 'index.html'), rendered);
 console.log('Rendered and verified:', target);

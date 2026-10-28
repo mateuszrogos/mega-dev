@@ -2,6 +2,8 @@
 
 ## Canonical signed KB page
 
+Open [index.html](index.html) to read the rendered page. Do not open `src/app.html`, which is only the framework template.
+
 - [Source: decision 0002 (.svx)](https://github.com/mateuszrogos/mega-dev/blob/main/src/routes/kb/decisions/0002-dedupe-by-cause/%2Bpage.svx)
 - [Standalone rendered page (.html)](https://github.com/mateuszrogos/mega-dev/blob/main/rendered/0002-dedupe-by-cause.html)
 - [Full static-site page](build/kb/decisions/0002-dedupe-by-cause/index.html)
