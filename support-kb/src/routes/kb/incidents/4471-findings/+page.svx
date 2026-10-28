@@ -1,6 +1,6 @@
 ---
 layout: runbook
-title: '#4471 · date-handling findings'
+title: '#4471 · two date-handling causes'
 owner: support desk
 status: living
 reviewed: 2026-10-28
@@ -45,14 +45,12 @@ fixed, while the booking-v3 hint will not be fixed because its form was retired.
 
 ## Counts and classification
 
-The table's last column shows how the support desk grouped reports under
-ticket #4471; the GitHub follow-up issues are linked above.
-
 <CauseTable ticket={4471} />
 
 Intake tags do not identify the root cause reliably: 23 parser-group reports
 are tagged `hint`, and 15 hint-group reports are tagged `parser`. The five
 one-day-move IDs in the desk notes remain within the parser group's 379 under
-the supplied tenant-based classifier; they are not counted as a third cause.
+the supplied tenant-based classifier; they are noted by the table and are not
+counted as a third cause.
 
 <RenderStamp {signature} />
