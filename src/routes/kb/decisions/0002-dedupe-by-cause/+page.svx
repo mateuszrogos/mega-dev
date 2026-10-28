@@ -4,7 +4,7 @@ title: '0002 · Deduplicate reports by cause, not subject'
 owner: mateuszrogos
 status: accepted
 reviewed: 2026-10-28
-signature: mateuszrogos
+signature: "mateuszrogos"
 ---
 
 <script>
