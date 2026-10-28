@@ -6,6 +6,8 @@ The primary KB contribution is a signed replacement decision:
 
 - [Decision 0002: source (.svx)](src/routes/kb/decisions/0002-dedupe-by-cause/+page.svx)
 - [Decision 0002: rendered page (.html)](rendered/0002-dedupe-by-cause.html)
+- [Decision 0002: full static-site route](build/kb/decisions/0002-dedupe-by-cause/index.html)
+- [Built KB index](build/kb/index.html)
 
 It supersedes the subject-only deduplication rule in decision 0001, without
 editing that accepted historical record. The tables and chart run the
@@ -35,6 +37,7 @@ The support desk closed #4471 on 5 October 2026. The two tickets cover all
 ```sh
 npm ci
 npm run render
+npm run build
 ```
 
 The renderer compiles the signed `.svx` page and its Svelte components. Counts,
@@ -42,3 +45,7 @@ tenant classification, and the desk reference come from the exported logic.
 
 The root source/render pair is generated from the canonical KB route under
 `src/routes/kb/incidents/4471-findings/`.
+
+`npm run build` produces the complete static KB under `build/`, including its
+`/kb/` index, route HTML, styles, and client code for interactive components.
+Serve `build/` as the web root to use those links and controls.
